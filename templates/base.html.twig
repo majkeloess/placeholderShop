@@ -22,6 +22,16 @@
 		{% endblock %}
 	</head>
 	<body>
+		<div class="flex justify-center items-center flex-row">
+			<a href="/">
+				<h1 class="my-10 lg:text-4xl text-6xl poppins-regular">{{placeholder}}</h1>
+			</a>
+		</div>
+
 		{% block body %}{% endblock %}
+		<footer class="absolute bottom-5 w-full text-center poppins-light text-3xl lg:text-sm">Powered by
+			<a href="https://majkeloess.dev" target="_blank">majkeloess</a>
+		</footer>
+
 	</body>
 </html>

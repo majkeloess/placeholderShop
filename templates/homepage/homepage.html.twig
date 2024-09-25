@@ -5,11 +5,6 @@
 {% endblock %}
 
 {% block body %}
-	<div class="flex justify-center items-center flex-row">
-		<a href="/">
-			<h1 class="my-10 lg:text-4xl text-6xl poppins-regular">{{placeholder}}</h1>
-		</a>
-	</div>
 	<a class="absolute top-12 right-20" href="/cart">
 		<i class="fa-solid fa-xl fa-cart-shopping"></i>
 	</a>
@@ -17,11 +12,12 @@
 		<div class="flex justify-center gap-10 flex-col lg:flex-row align-middle mt-10">
 			{% for item in items %}
 				<a href="/product/{{item.id}}">
-					<div class="shadow-xl p-4 w-[320px] h-[400px] flex flex-col justify-between">
+					<div class="shadow-2xl p-4 w-[320px] h-[400px] flex flex-col justify-between">
 						<img src={{asset(item.image)}} alt="product-{{item.id}}">
 						<div>
 							<p class="geologica">{{item.name|upper}}</p>
-							<p class="geologica">{{item.price|upper}}</p>
+							<p class="geologica">{{item.price|upper }}
+								$</p>
 						</div>
 					</div>
 				</a>

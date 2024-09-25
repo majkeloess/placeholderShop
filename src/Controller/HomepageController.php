@@ -2,6 +2,7 @@
 
 
 namespace App\Controller;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -9,35 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomepageController extends AbstractController
 {
   #[Route("/")]
-  public function homepage()
+  public function homepage(ProductRepository $product)
   {
     $placeholder = "{{placeholder}}";
-    $items = [
-      [
-        "id" => "1",
-        "name" => "Logo tee",
-        "image" => "img/tee.png",
-        "price" => "89$",
-      ],
-      [
-        "id" => "2",
-        "name" => "Constructor hoodie",
-        "image" => "img/hoodie.png",
-        "price" => "129$",
-      ],
-      [
-        "id" => "3",
-        "name" => "spider zip",
-        "image" => "img/zip.png",
-        "price" => "129$",
-      ],
-      [
-        "id" => "4",
-        "name" => "Bird sleveless",
-        "image" => "img/sleveless.png",
-        "price" => "69$",
-      ],
-    ];
+    $items = $product->fetchAll();
+
 
     return $this->render("homepage/homepage.html.twig", [
       'placeholder' => $placeholder,

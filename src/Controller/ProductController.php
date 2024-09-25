@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -8,8 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
   #[Route("/product/{id<\d+>}")]
-  public function product($id)
+  public function product($id, ProductRepository $product)
   {
-    return $this->render("/product/product.html.twig", ["id" => $id, "placeholder" => "{{placeholder}}"]);
+    $prod = $product->fetchById($id);
+    return $this->render("/product/product.html.twig", ["product" => $prod, "placeholder" => "{{placeholder}}"]);
   }
 }
