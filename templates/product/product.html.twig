@@ -14,20 +14,30 @@
 				<p class="poppins-regular my-6">{{product.description}}</p>
 				<p class="text-3xl geologica">{{product.price}}
 					$</p>
-				<div class="flex gap-4 mt-6">
-					<button class="poppins-medium text-3xl">s</button>
-					<button class="poppins-medium text-3xl">m</button>
-					<button class="poppins-medium text-3xl">l</button>
-					<button class="poppins-medium text-3xl">xl</button>
-				</div>
-				{# <button class="poppins-medium shadow-xl px-2 ">add to cart</button> #}
-			</div>
+				<form action="{{ path('cart_add') }}" method="post" id="add-to-cart-form">
+					<div class="flex gap-4 mt-6">
+						<input type="hidden" name="product_id" value="{{ product.id }}">
+						<input type="hidden" name="size" id="selected-size">
 
+						<button type="button" data-size="s" class="poppins-medium text-3xl">s</button>
+						<button type="button" data-size="m" class="poppins-medium text-3xl">m</button>
+						<button type="button" data-size="l" class="poppins-medium text-3xl">l</button>
+						<button type="button" data-size="xl" class="poppins-medium text-3xl">xl</button>
+
+					</div>
+					<button type="submit" class="geologica px-2 mt-6 text-xl border-[1px] border-black shadow-lg">{{"add to cart"|upper}}</button>
+				</form>
+			</div>
 		</div>
 	</div>
 
-	<a class="absolute top-12 right-20" href="/cart">
+	<a class="absolute top-12 right-20 flex flex-row items-center gap-2" href="/cart">
 		<i class="fa-solid fa-xl fa-cart-shopping"></i>
+		<p class="geologica text-xl">
+			{% if app.session.get('cart') is defined %}
+				{{ app.session.get('cart')|length != 0 ? app.session.get('cart')|length : "" }}
+			{% endif %}
+		</p>
 	</a>
 
 

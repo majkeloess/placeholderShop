@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block body %}
-	<a class="absolute top-12 right-20" href="/cart">
-		<i class="fa-solid fa-xl fa-cart-shopping"></i>
-	</a>
+
+
 	<div class="flex justify-center">
 		<div class="flex justify-center gap-10 flex-col lg:flex-row align-middle mt-10">
 			{% for item in items %}
@@ -24,6 +23,16 @@
 			{% endfor %}
 		</div>
 	</div>
+
+	<a class="absolute top-12 right-20 flex flex-row items-center gap-2" href="/cart">
+		<i class="fa-solid fa-xl fa-cart-shopping"></i>
+		<p class="geologica text-xl">
+			{% if app.session.get('cart') is defined %}
+				{{ app.session.get('cart')|length != 0 ? app.session.get('cart')|length : "" }}
+			{% endif %}
+		</p>
+	</a>
+
 
 	<footer class="absolute bottom-5 w-full text-center poppins-light text-3xl lg:text-sm">Powered by
 		<a href="https://majkeloess.dev" target="_blank">majkeloess</a>

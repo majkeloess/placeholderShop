@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+	<div class="w-full h-[500px] flex justify-center items-center">
+		{% if cart|length == 0 %}
+			<p class="poppins-light text-xl">Your cart is currently empty.</p>
+		{% else %}
+
+			<table class="shadow-2xl w-[600px] h-[200px]">
+				<tbody class="p-40">
+					{% for prod in cart %}
+						<tr>
+							<td>
+								<div class="h-[80px] w-[80px]">
+									<img src="{{asset(prod.image)}}" alt="product-{{prod.name}}">
+								</div>
+							</td>
+							<td>{{prod.name|upper}}</td>
+							<td>{{prod.size}}</td>
+							<td>{{prod.price}}
+								$</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		{% endif %}
+	</div>
+{% endblock %}
