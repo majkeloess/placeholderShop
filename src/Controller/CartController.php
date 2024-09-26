@@ -14,8 +14,10 @@ class CartController extends AbstractController
   public function cart(SessionInterface $session)
   {
     $cart = $session->get('cart');
+    $price = $session->get("price");
 
-    return $this->render("/cart/cart.html.twig", ["placeholder" => "{{placeholder}}", "cart" => $cart]);
+
+    return $this->render("/cart/cart.html.twig", ["placeholder" => "{{placeholder}}", "cart" => $cart, "price" => $price]);
   }
 
   #[Route("/cart/add", "cart_add")]
@@ -24,15 +26,33 @@ class CartController extends AbstractController
     $id = $request->request->get("product_id");
     $size = $request->request->get("size");
 
+
+
     $cart = $session->get('cart');
+    $price = $session->get('price');
+    $quantity = $session->get('quantity');
 
     $prod = $product->fetchById($id);
+
+    if ($price) {
+      $price += $prod->getPrice();
+    } else {
+      $price = $prod->getPrice();
+    }
+
+    if ($quantity) {
+      $quantity++;
+    } else {
+      $quantity = 1;
+    }
+
 
     if (isset($cart["$id$size"])) {
       $cart["$id$size"]["quantity"]++;
     } else {
       $cart["$id$size"] = [
         "id" => $id,
+        "id_cart" => "$id$size",
         "name" => $prod->getName(),
         "size" => $size,
         "price" => $prod->getPrice(),
@@ -40,8 +60,10 @@ class CartController extends AbstractController
         "quantity" => 1
       ];
     }
-
     $session->set('cart', $cart);
+    $session->set('price', $price);
+    $session->set('quantity', $quantity);
+
     return $this->redirectToRoute("cart");
   }
 
@@ -50,13 +72,31 @@ class CartController extends AbstractController
   {
 
     $id = $request->request->get("product_id");
+
     $cart = $session->get('cart');
+    $price = $session->get('price');
+    $quantity = $session->get('quantity');
+
+    $price -= $cart[$id]["price"];
+    $quantity -= $cart[$id]["quantity"];
     unset($cart[$id]);
+
     $session->set('cart', $cart);
+    $session->set('price', $price);
+    $session->set('quantity', $quantity);
 
     return $this->redirectToRoute("cart");
   }
 
+  #[Route("cart/remove_all", "cart_remove_all")]
+  public function removeAll(SessionInterface $session)
+  {
+    $session->set("cart", []);
+    $session->set('price', 0);
+    $session->set('quantity', 0);
+
+    return $this->redirectToRoute("cart");
+  }
 
 
 }

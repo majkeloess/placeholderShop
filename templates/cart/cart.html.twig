@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="w-full h-[500px] flex justify-center items-center">
+	<div class="w-full h-[500px] flex flex-col justify-center items-center">
 		{% if cart|length == 0 %}
 			<p class="poppins-light text-xl">Your cart is currently empty.</p>
 		{% else %}
@@ -26,7 +26,7 @@
 						<td class="px-4 geologica">{{prod.price}}$</td>
 						<td class="px-4 geologica">
 							<form action="{{ path('cart_remove') }}" method="post">
-								<input type="hidden" name="product_id" value={{prod.id}}>
+								<input type="hidden" name="product_id" value={{prod.id_cart}}>
 
 								<button type="submit">
 									<i class="fa-solid fa-xmark text-2xl"></i>
@@ -36,6 +36,21 @@
 					</tr>
 				{% endfor %}
 			</table>
+
+			<div class="mt-10 flex flex-row gap-8 items-center">
+				<button type="submit" class="geologica px-4 py-1   text-white text-xl border-[1px] border-black bg-black shadow-lg">{{"Proceed to checkout"|upper}}</button>
+				<form action="{{path("cart_remove_all")}}" method="post">
+					<button type="submit" class="geologica px-4 py-1  text-xl border-[1px] border-black shadow-lg">{{"Remove all"|upper}}</button>
+				</form>
+				<p class="geologica text-left text-2xl">
+					{{"total:  "|upper}}
+					<span class="font-semibold">
+						{{price}}$
+					</span>
+				</p>
+
+			</div>
 		{% endif %}
+
 	</div>
 {% endblock %}

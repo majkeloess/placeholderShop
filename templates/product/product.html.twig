@@ -29,7 +29,8 @@
 
 
 					</div>
-					<button type="submit" class="geologica px-2 mt-6 text-xl border-[1px] border-black shadow-lg">{{"add to cart"|upper}}</button>
+					<button type="submit" class="geologica px-4 py-1  mt-6 text-xl border-[1px] border-black shadow-lg">{{"add to cart"|upper}}</button>
+
 				</form>
 			</div>
 		</div>
@@ -38,8 +39,8 @@
 	<a class="absolute top-12 right-20 flex flex-row items-center gap-2" href="/cart">
 		<i class="fa-solid fa-2x fa-cart-shopping text-2xl"></i>
 		<p class="geologica text-xl">
-			{% if app.session.get('cart') is defined %}
-				{{ app.session.get('cart')|length != 0 ? app.session.get('cart')|length : "" }}
+			{% if app.session.get('quantity') is defined %}
+				{{ app.session.get('quantity') != 0 ? app.session.get('quantity') : "" }}
 			{% endif %}
 		</p>
 	</a>

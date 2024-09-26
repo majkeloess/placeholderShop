@@ -27,8 +27,8 @@
 	<a class="absolute top-12 right-20 flex flex-row items-center gap-2" href="/cart">
 		<i class="fa-solid fa-xl fa-cart-shopping text-2xl"></i>
 		<p class="geologica text-xl ">
-			{% if app.session.get('cart') is defined %}
-				{{ app.session.get('cart')|length != 0 ? app.session.get('cart')|length : "" }}
+			{% if app.session.get('quantity') is defined %}
+				{{ app.session.get('quantity') != 0 ? app.session.get('quantity') : "" }}
 			{% endif %}
 		</p>
 	</a>
