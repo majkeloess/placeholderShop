@@ -7,40 +7,50 @@
 {% block body %}
 	<div class="w-full h-[500px] flex flex-col justify-center items-center">
 		{% if cart|length == 0 %}
-			<p class="poppins-light text-xl">Your cart is currently empty.</p>
+			<p class="poppins-light text-xl">Your cart is currently empty.
+				<a href="/">
+					<span class="underline">Continue here</span>
+				</a>
+			</p>
 		{% else %}
+			<div class="w-[700px] shadow-2xl max-h-[500px] overflow-y-auto overflow-x-hidden">
+				<table class=" w-[700px]">
+					{% for prod in cart %}
+						<tr>
+							<td class="px-4 py-2">
+								<div class="h-[80px] w-[80px]">
+									<a href="product/{{prod.id}}">
+										<img src="{{asset(prod.image)}}" alt="product-{{prod.id}}">
+									</a>
+								</div>
+							</td>
+							<td class="px-4 geologica">{{prod.name|upper}}</td>
+							<td class="px-4 poppins-medium">{{prod.quantity}}</td>
+							<td class="px-4 poppins-medium">{{prod.size}}</td>
+							<td class="px-4 geologica">{{prod.price}}$</td>
+							<td class="px-4 geologica">
+								<form action="{{ path('cart_remove') }}" method="post">
+									<input type="hidden" name="product_id" value={{prod.id_cart}}>
 
-			<table class="shadow-2xl w-[700px]">
-				{% for prod in cart %}
-					<tr>
-						<td class="px-4 py-2">
-							<div class="h-[80px] w-[80px]">
-								<a href="product/{{prod.id}}">
-									<img src="{{asset(prod.image)}}" alt="product-{{prod.id}}">
-								</a>
-							</div>
-						</td>
-						<td class="px-4 geologica">{{prod.name|upper}}</td>
-						<td class="px-4 poppins-medium">{{prod.quantity}}</td>
-						<td class="px-4 poppins-medium">{{prod.size}}</td>
-						<td class="px-4 geologica">{{prod.price}}$</td>
-						<td class="px-4 geologica">
-							<form action="{{ path('cart_remove') }}" method="post">
-								<input type="hidden" name="product_id" value={{prod.id_cart}}>
+									<button type="submit">
+										<i class="fa-solid fa-xmark text-2xl"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
 
-								<button type="submit">
-									<i class="fa-solid fa-xmark text-2xl"></i>
-								</button>
-							</form>
-						</td>
-					</tr>
-				{% endfor %}
-			</table>
 
 			<div class="mt-10 flex flex-row gap-8 items-center">
-				<button type="submit" class="geologica px-4 py-1   text-white text-xl border-[1px] border-black bg-black shadow-lg">{{"Proceed to checkout"|upper}}</button>
+				<form action="{{path("checkout")}}" method="post">
+					<button type="submit" class="geologica px-4 py-1 text-xl border-[1px] border-black text-white bg-black hover:text-black hover:bg-white transition-all shadow-lg">{{"Proceed to checkout"|upper}}</button>
+
+				</form>
 				<form action="{{path("cart_remove_all")}}" method="post">
-					<button type="submit" class="geologica px-4 py-1  text-xl border-[1px] border-black shadow-lg">{{"Remove all"|upper}}</button>
+					<button type="submit" class="geologica px-4 py-1  text-xl border-[1px] border-black shadow-lg text-black bg-white hover:text-white hover:bg-black transition-all">{{"Remove all"|upper}}</button>
+
 				</form>
 				<p class="geologica text-left text-2xl">
 					{{"total:  "|upper}}

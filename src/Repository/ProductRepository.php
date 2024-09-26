@@ -18,7 +18,6 @@ class ProductRepository
 
   public function fetchById($id)
   {
-    $ret = null;
     foreach ($this->fetchAll() as $item) {
       if ($item->getId() == $id) {
         $ret = $item;

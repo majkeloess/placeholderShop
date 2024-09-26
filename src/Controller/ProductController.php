@@ -12,6 +12,6 @@ class ProductController extends AbstractController
   public function product($id, ProductRepository $product)
   {
     $prod = $product->fetchById($id);
-    return $this->render("/product/product.html.twig", ["product" => $prod, "placeholder" => "{{placeholder}}"]);
+    return $this->render("/product/product.html.twig", ["product" => $prod]);
   }
 }

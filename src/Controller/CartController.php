@@ -17,7 +17,7 @@ class CartController extends AbstractController
     $price = $session->get("price");
 
 
-    return $this->render("/cart/cart.html.twig", ["placeholder" => "{{placeholder}}", "cart" => $cart, "price" => $price]);
+    return $this->render("/cart/cart.html.twig", ["cart" => $cart, "price" => $price]);
   }
 
   #[Route("/cart/add", "cart_add")]

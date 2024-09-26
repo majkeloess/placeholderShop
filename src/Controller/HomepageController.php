@@ -9,15 +9,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomepageController extends AbstractController
 {
-  #[Route("/")]
+  #[Route("/", "home")]
   public function homepage(ProductRepository $product)
   {
-    $placeholder = "{{placeholder}}";
     $items = $product->fetchAll();
 
 
     return $this->render("homepage/homepage.html.twig", [
-      'placeholder' => $placeholder,
       'items' => $items
     ]);
   }
