@@ -1,5 +1,6 @@
 {% extends "base.html.twig" %}
 
+
 {% block title %}
 	ph |
 	{{product.name}}
@@ -21,8 +22,11 @@
 
 						<button type="button" data-size="s" class="poppins-medium text-3xl">s</button>
 						<button type="button" data-size="m" class="poppins-medium text-3xl">m</button>
+
 						<button type="button" data-size="l" class="poppins-medium text-3xl">l</button>
+
 						<button type="button" data-size="xl" class="poppins-medium text-3xl">xl</button>
+
 
 					</div>
 					<button type="submit" class="geologica px-2 mt-6 text-xl border-[1px] border-black shadow-lg">{{"add to cart"|upper}}</button>
@@ -32,13 +36,15 @@
 	</div>
 
 	<a class="absolute top-12 right-20 flex flex-row items-center gap-2" href="/cart">
-		<i class="fa-solid fa-xl fa-cart-shopping"></i>
+		<i class="fa-solid fa-2x fa-cart-shopping text-2xl"></i>
 		<p class="geologica text-xl">
 			{% if app.session.get('cart') is defined %}
 				{{ app.session.get('cart')|length != 0 ? app.session.get('cart')|length : "" }}
 			{% endif %}
 		</p>
 	</a>
+
+	<script src="{{ asset('js/button.js') }}"></script>
 
 
 {% endblock %}

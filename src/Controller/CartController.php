@@ -28,18 +28,35 @@ class CartController extends AbstractController
 
     $prod = $product->fetchById($id);
 
-    $cart[$id] = [
-      "name" => $prod->getName(),
-      "size" => $size,
-      "price" => $prod->getPrice(),
-      "image" => $prod->getImage(),
-      "quantity" => 1
-    ];
+    if (isset($cart["$id$size"])) {
+      $cart["$id$size"]["quantity"]++;
+    } else {
+      $cart["$id$size"] = [
+        "id" => $id,
+        "name" => $prod->getName(),
+        "size" => $size,
+        "price" => $prod->getPrice(),
+        "image" => $prod->getImage(),
+        "quantity" => 1
+      ];
+    }
 
+    $session->set('cart', $cart);
+    return $this->redirectToRoute("cart");
+  }
+
+  #[Route("cart/remove", "cart_remove")]
+  public function remove(SessionInterface $session, Request $request)
+  {
+
+    $id = $request->request->get("product_id");
+    $cart = $session->get('cart');
+    unset($cart[$id]);
     $session->set('cart', $cart);
 
     return $this->redirectToRoute("cart");
   }
+
 
 
 }

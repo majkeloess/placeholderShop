@@ -1,30 +1,41 @@
 {% extends "base.html.twig" %}
 
 
+{% block title %}ph | cart
+{% endblock %}
+
 {% block body %}
 	<div class="w-full h-[500px] flex justify-center items-center">
 		{% if cart|length == 0 %}
 			<p class="poppins-light text-xl">Your cart is currently empty.</p>
 		{% else %}
 
-			<table class="shadow-2xl w-[600px] h-[200px]">
-				<tbody class="p-40">
-					{% for prod in cart %}
-						<tr>
-							<td>
-								<div class="h-[80px] w-[80px]">
-									<img src="{{asset(prod.image)}}" alt="product-{{prod.name}}">
-								</div>
-							</td>
-							<td>{{prod.name|upper}}</td>
-							<td>{{prod.size}}</td>
-							<td>{{prod.price}}
-								$</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+			<table class="shadow-2xl w-[700px]">
+				{% for prod in cart %}
+					<tr>
+						<td class="px-4 py-2">
+							<div class="h-[80px] w-[80px]">
+								<a href="product/{{prod.id}}">
+									<img src="{{asset(prod.image)}}" alt="product-{{prod.id}}">
+								</a>
+							</div>
+						</td>
+						<td class="px-4 geologica">{{prod.name|upper}}</td>
+						<td class="px-4 poppins-medium">{{prod.quantity}}</td>
+						<td class="px-4 poppins-medium">{{prod.size}}</td>
+						<td class="px-4 geologica">{{prod.price}}$</td>
+						<td class="px-4 geologica">
+							<form action="{{ path('cart_remove') }}" method="post">
+								<input type="hidden" name="product_id" value={{prod.id}}>
 
+								<button type="submit">
+									<i class="fa-solid fa-xmark text-2xl"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
 		{% endif %}
 	</div>
 {% endblock %}
