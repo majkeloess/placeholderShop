@@ -2,7 +2,7 @@
 
 {% block body %}
 	<div class="flex justify-center gap-20 mt-10">
-		<form method="post">
+		<form action="{{path("summary")}}" method="post">
 			<div class="flex flex-col shadow-2xl p-8">
 				<label class="geologica mt-2 text-sm" for="fullname">{{"fullname"|upper}}</label>
 				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="fullname" id="fullname" required>
@@ -16,8 +16,8 @@
 				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="city" id="city" required>
 				<label class="geologica mt-2 text-sm" for="address">{{"address"|upper}}</label>
 				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="address" id="address" required>
-				<label class="geologica mt-2 text-sm" for="postal-code">{{"postal code"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="postal-code" id="postal-code" required>
+				<label class="geologica mt-2 text-sm" for="postal">{{"postal code"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="postal" id="postal" required>
 				<button type="submit" class="geologica px-4 py-1  mt-6 text-xl border-[1px] border-black shadow-lg text-white bg-black hover:text-black hover:bg-white transition-all">{{"Buy now"|upper}}</button>
 
 			</div>

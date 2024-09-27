@@ -26,8 +26,6 @@ class CartController extends AbstractController
     $id = $request->request->get("product_id");
     $size = $request->request->get("size");
 
-
-
     $cart = $session->get('cart');
     $price = $session->get('price');
     $quantity = $session->get('quantity');
