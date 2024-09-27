@@ -31,7 +31,7 @@ class SummaryController extends AbstractController
     $session->set("data", $data);
 
     if ($data["fullname"] && $cart && $price) {
-      return $this->render("/summary/summary.html.twig", ["data" => $data, "price" => (int) $price + 16]);
+      return $this->render("/summary/summary.html.twig", ["data" => $data, "price" => (int) $price + 16, "cart" => $cart]);
     } else {
       return $this->redirectToRoute("home");
     }
