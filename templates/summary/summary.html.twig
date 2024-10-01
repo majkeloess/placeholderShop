@@ -5,13 +5,15 @@
 
 {% block body %}
 	<div class="flex justify-center">
-		<div class="flex flex-col justify-center mt-6 gap-6 w-[900px] shadow-2xl p-10">
+
+		<div class="flex flex-col justify-center gap-12 xl:gap-6 xl:w-[900px] w-[90vw] shadow-2xl p-10 xl:mt-0 mt-20 xl:mb-0 mb-32">
+
 
 			<div>
-				<p class="poppins-medium text-2xl">
+				<p class="poppins-medium text-4xl xl:text-2xl">
 					Thanks for placing your order! 😊🎉
 				</p>
-				<p class="poppins-light text-lg leading-6 mt-6">
+				<p class="poppins-light text-3xl  xl:text-lg xl:leading-6 mt-6">
 					Just kidding! This is a placeholder shop, created for learning purposes with
 					<span class="font-bold">Symfony PHP, Twig</span>. Implementing a real webshop is a much bigger undertaking. It would involve integrating a database and its schema (e.g. products, orders, order_details, user_data), adding financial infrastructure (e.g. Stripe, PayPal), validating forms, and much more.
 
@@ -19,13 +21,14 @@
 				</p>
 			</div>
 			<div>
-				<p class="poppins-light text-lg leading-6">
+				<p class="poppins-light text-3xl  xl:text-lg xl:leading-6">
+
 					Here's a snippet of the data you used during this intro. In a real application, you would insert this data into a database. Also you would need to implement some enum with state of order (e.g pending, paid, cancelled) as one of the column in order schema.
 				</p>
-				<div class="flex flex-row gap-20 mt-6">
+				<div class="flex flex-row gap-20 mt-12 xl:mt-6">
 					<div class="w-1/2">
-						<p class="poppins-medium text-xl">Order data</p>
-						<ul class="poppins-regular text-sm">
+						<p class="poppins-medium text-3xl xl:text-xl">Order data</p>
+						<ul class="poppins-regular text-2xl xl:text-sm">
 							<li>[][product-id, product-size]:
 								<br>
 								[
@@ -41,10 +44,10 @@
 						</ul>
 					</div>
 					<div class="w-1/2">
-						<p class="poppins-medium text-xl">
+						<p class="poppins-medium text-3xl xl:text-xl">
 							User data
 						</p>
-						<ul class="poppins-regular text-sm">
+						<ul class="poppins-regular text-2xl xl:text-sm">
 							<li>
 								fullname:
 								{{data.fullname}}

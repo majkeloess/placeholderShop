@@ -1,30 +1,34 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<div class="flex justify-center gap-20 mt-10">
+	<div class="flex justify-center gap-20 xl:flex-row flex-col items-center xl:mt-10 mt-[10vh] lg:mt-10 mb-20 xl:mb-0">
+
+
 		<form action="{{path("summary")}}" method="post">
-			<div class="flex flex-col shadow-2xl p-8">
-				<label class="geologica mt-2 text-sm" for="fullname">{{"fullname"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="fullname" id="fullname" required>
-				<label class="geologica mt-2 text-sm" for="email">{{"email"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="email" id="email" required>
-				<label class="geologica mt-2 text-sm" for="phone">{{"phone"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="phone" id="phone" required>
-				<label class="geologica mt-2 text-sm" for="country">{{"country"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="country" id="country" required>
-				<label class="geologica mt-2 text-sm" for="city">{{"city"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="city" id="city" required>
-				<label class="geologica mt-2 text-sm" for="address">{{"address"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="address" id="address" required>
-				<label class="geologica mt-2 text-sm" for="postal">{{"postal code"|upper}}</label>
-				<input class="poppins-regular border-[1px] border-black p-1 text-sm" type="text" name="postal" id="postal" required>
-				<button type="submit" class="geologica px-4 py-1  mt-6 text-xl border-[1px] border-black shadow-lg text-white bg-black hover:text-black hover:bg-white transition-all">{{"Buy now"|upper}}</button>
+			<div class="flex flex-col shadow-2xl p-8 xl:w-[320px] w-[80vw]">
+				<label class="geologica mt-2 text-lg xl:text-sm" for="fullname">{{"fullname"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1  text-lg xl:text-sm" type="text" name="fullname" id="fullname" required>
+
+				<label class="geologica mt-2 text-lg xl:text-sm" for="email">{{"email"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1 text-lg xl:text-sm" type="text" name="email" id="email" required>
+				<label class="geologica mt-2 text-lg xl:text-sm" for="phone">{{"phone"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1 text-lg xl:text-sm" type="text" name="phone" id="phone" required>
+				<label class="geologica mt-2 text-lg xl:text-sm" for="country">{{"country"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1 text-lg xl:text-sm" type="text" name="country" id="country" required>
+				<label class="geologica mt-2 text-lg xl:text-sm" for="city">{{"city"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1 text-lg xl:text-sm" type="text" name="city" id="city" required>
+				<label class="geologica mt-2 text-lg xl:text-sm" for="address">{{"address"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1 text-lg xl:text-sm" type="text" name="address" id="address" required>
+				<label class="geologica mt-2 text-lg xl:text-sm" for="postal">{{"postal code"|upper}}</label>
+				<input class="poppins-regular border-[1px] border-black p-1 text-lg xl:text-sm" type="text" name="postal" id="postal" required>
+				<button type="submit" class="geologica px-4 py-1  mt-6 text-3xl xl:text-xl border-[1px] border-black shadow-lg text-white bg-black hover:text-black hover:bg-white transition-all">{{"Buy now"|upper}}</button>
 
 			</div>
 		</form>
 		<div class="flex flex-col gap-20">
-			<div class="w-[500px] shadow-2xl max-h-[200px] overflow-y-auto overflow-x-hidden flex justify-center">
-				<table class=" w-[500px]">
+			<div class="xl:w-[500px] w-[80vw] shadow-2xl max-h-[200px] overflow-y-auto overflow-x-hidden flex justify-center">
+				<table class="xl:w-[500px] w-[80vw]">
+
 					{% for prod in cart %}
 						<tr>
 							<td class="px-4 py-2">
@@ -34,30 +38,34 @@
 									</a>
 								</div>
 							</td>
-							<td class="px-4 geologica">{{prod.name|upper}}</td>
-							<td class="px-4 poppins-medium">{{prod.quantity}}</td>
-							<td class="px-4 poppins-medium">{{prod.size}}</td>
-							<td class="px-4 geologica">{{prod.price}}$</td>
+							<td class="px-4 xl:text-base text-2xl geologica">{{prod.name|upper}}</td>
+							<td class="px-4 xl:text-base text-2xl poppins-medium">{{prod.quantity}}</td>
+
+							<td class="px-4 xl:text-base text-2xl poppins-medium">{{prod.size}}</td>
+
+							<td class="px-4 xl:text-base text-2xl geologica">{{prod.price}}$</td>
+
 						</tr>
 					{% endfor %}
 				</table>
 			</div>
 
-			<div class="w-[500px] p-10 shadow-2xl">
+			<div class="xl:w-[500px] w-[80vw] p-10 shadow-2xl">
+
 				<ul>
 					<li class="flex flex-row justify-between">
-						<p class="poppins-regular text-2xl">Cart</p>
-						<p class="poppins-regular text-2xl">{{price}}
+						<p class="poppins-regular text-4xl xl:text-2xl">Cart</p>
+						<p class="poppins-regular text-4xl xl:text-2xl">{{price}}
 							$</p>
 					</li>
 					<li class="flex flex-row justify-between">
-						<p class="poppins-regular text-2xl">Shipping</p>
-						<p class="poppins-regular text-2xl">{{ship}}
+						<p class="poppins-regular text-4xl xl:text-2xl">Shipping</p>
+						<p class="poppins-regular text-4xl xl:text-2xl">{{ship}}
 							$</p>
 					</li>
 					<li class="flex flex-row justify-between mt-4">
-						<p class="poppins-medium text-2xl">Total price</p>
-						<p class="poppins-medium text-2xl">{{price + ship}}
+						<p class="poppins-medium text-4xl xl:text-2xl">Total price</p>
+						<p class="poppins-medium text-4xl xl:text-2xl">{{price + ship}}
 							$</p>
 					</li>
 				</ul>
