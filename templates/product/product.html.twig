@@ -8,28 +8,29 @@
 
 {% block body %}
 	<div class="flex justify-center">
-		<div class="flex justify-center mt-10 gap-10 shadow-2xl w-max p-10">
+		<div class="flex justify-center xl:mt-10 mt-[10vh] lg:mt-10 mb-[20vw] xl:mb-0  flex-col xl:flex-row xl:gap-10 gap-20 shadow-2xl w-max p-10">
+
 			<img src={{asset(product.image)}} alt="product-{{product.id}}">
-			<div class="w-[500px]">
-				<h1 class="text-4xl geologica">{{product.name}}</h1>
-				<p class="poppins-regular my-6">{{product.description}}</p>
-				<p class="text-3xl geologica">{{product.price}}
+			<div class="w-[70vw] xl:w-[500px]">
+				<h1 class="xl:text-4xl text-6xl geologica">{{product.name}}</h1>
+				<p class="poppins-regular xl:text-base text-2xl my-12 xl:my-6">{{product.description}}</p>
+				<p class="xl:text-3xl text-5xl geologica">{{product.price}}
 					$</p>
 				<form action="{{ path('cart_add') }}" method="post" id="add-to-cart-form">
-					<div class="flex gap-4 mt-6">
+					<div class="flex gap-4 mt-12 xl:mt-6">
 						<input type="hidden" name="product_id" value="{{ product.id }}">
 						<input type="hidden" name="size" id="selected-size">
 
-						<button type="button" data-size="s" class="poppins-medium text-3xl">s</button>
-						<button type="button" data-size="m" class="poppins-medium text-3xl">m</button>
+						<button type="button" data-size="s" class="poppins-medium text-5xl xl:text-3xl">s</button>
+						<button type="button" data-size="m" class="poppins-medium text-5xl xl:text-3xl">m</button>
 
-						<button type="button" data-size="l" class="poppins-medium text-3xl">l</button>
+						<button type="button" data-size="l" class="poppins-medium text-5xl xl:text-3xl">l</button>
 
-						<button type="button" data-size="xl" class="poppins-medium text-3xl">xl</button>
+						<button type="button" data-size="xl" class="poppins-medium text-5xl xl:text-3xl">xl</button>
 
 
 					</div>
-					<button type="submit" class="geologica px-4 py-1  mt-6 text-xl border-[1px] border-black shadow-lg text-black bg-white hover:text-white hover:bg-black transition-all">{{"add to cart"|upper}}</button>
+					<button type="submit" class="geologica px-4 py-1 mt-12  xl:mt-6 xl:text-xl text-4xl border-[1px] border-black shadow-lg text-black bg-white hover:text-white hover:bg-black transition-all">{{"add to cart"|upper}}</button>
 
 
 				</form>
@@ -38,13 +39,14 @@
 	</div>
 
 	<a class="absolute top-12 right-20 flex flex-row items-center gap-2" href="/cart">
-		<i class="fa-solid fa-2x fa-cart-shopping text-2xl"></i>
-		<p class="geologica text-xl">
+		<i class="fa-solid fa-xl fa-cart-shopping text-4xl xl:text-2xl"></i>
+		<p class="geologica text-3xl xl:text-xl">
 			{% if app.session.get('quantity') is defined %}
 				{{ app.session.get('quantity') != 0 ? app.session.get('quantity') : "" }}
 			{% endif %}
 		</p>
 	</a>
+
 
 	<script src="{{ asset('js/button.js') }}"></script>
 
